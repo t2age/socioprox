@@ -1,0 +1,46 @@
+<html><body>
+    <h2>SOCIOPROX B (guest)</h2>
+    <script src="http://192.168.50.1:8000/simplepeer.min.js"></script>
+    <video id="video" controls="true" autoplay="true" muted="muted" width="640" ></video> <hr>
+    <video id="videoLocal" controls="true" autoplay="true" muted="muted" width="240" ></video>
+    <script>
+		const WEBSOCKET_ADDRESS = "192.168.50.1"
+		
+		var serverConn2
+		serverConn2 = new WebSocket('ws://' + WEBSOCKET_ADDRESS + ':9000')
+		var audioSpecs =  { sampleSize: 8, sampleRate: 8000, channelCount: 1 }
+		var videoSpecs = { 	width: {min:160, ideal:176, max:320},
+							height:{min:120, ideal:144, max:240} }
+
+		navigator.mediaDevices.getUserMedia({ video: videoSpecs, audio: audioSpecs }).then(gotMedia);
+		
+		function gotMedia(stream) {
+			var videoLocal = document.getElementById('videoLocal');
+			videoLocal.srcObject = stream;
+			videoLocal.play();
+							
+			serverConn2.onmessage = gotMessageFromServer2;
+		
+			const peerGuest = new SimplePeer({ initiator: false, stream: stream, trickle: false });
+			
+			peerGuest.on('error', err => console.log('error', err));
+			
+			peerGuest.on('signal', data => {
+				try { serverConn2.send( JSON.stringify({'msg': data}) ) }
+				catch (err) { console.log(err) }
+			})
+			
+			peerGuest.on('stream', streamRemoto => {
+				var video = document.querySelector('video');
+				video.srcObject = streamRemoto;
+				video.play();
+			})
+			
+			function gotMessageFromServer2(message) {
+				var signal = JSON.parse(message.data);
+				peerGuest.signal(signal.msg);
+			}
+		}
+    </script>
+
+</body></html>
