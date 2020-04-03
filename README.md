@@ -73,7 +73,13 @@ These are the very basic components, from here, there are many more features/fun
   
 Routing to the Internet is optional, but here the goal is NOT to have Internet access, instead to allow the creation of a kind of "private link", enabling people to stablish audio/video link via WiFi, for short physical distances, helping them to avoid unnecessary close physical proximity...  
   
-Use scenarious:  
+Links to the tutorials that the current tuto was based (use same code/instructions):  
+https://github.com/t2age/wl-p2p-wifi  
+  
+https://github.com/t2age/wl-p2p-av  
+  
+  
+**Use scenarious:**  
   
 a) Perhaps a doctor can reduce 50% of close contact with a patient, during a consultation, using an APP based on this idea. The other 50% is task demand a close physical contact, so, in this case, the doctor is finishing his/her day with a 50% less exposure...
   
