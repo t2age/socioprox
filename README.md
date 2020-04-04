@@ -65,6 +65,12 @@ A "Walk-Talk" Tool for Social Proximity
 <img src="img/socioprox-021.jpg" width=640px;/>
   
 ---
+<img src="img/socioprox-022.jpg" width=640px;/>
+  
+---
+<img src="img/socioprox-023.jpg" width=640px;/>
+  
+---
   
   
 A Minimalist tutorial showing how to create a WiFi Access Point and provide host functions to connect 2 smart devices with bi-directional WebRTC Audio/Video, using SimplePeer Library.  
